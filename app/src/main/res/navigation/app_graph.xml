@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.stocktest.ui.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_stockListFragment"
+            app:destination="@id/stockListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockListFragment"
+        android:name="com.example.stocktest.ui.StockListFragment"
+        android:label="StockListFragment"
+        tools:layout="@layout/fragment_stock_list">
+        <action
+            android:id="@+id/action_stockListFragment_to_stockInformationFragment"
+            app:destination="@id/stockInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockInformationFragment"
+        android:name="com.example.stocktest.ui.StockInformationFragment"
+        android:label="StockInformationFragment"
+        tools:layout="@layout/fragment_stock_information">
+        <argument
+            android:name="symbol"
+            app:argType="string" />
+    </fragment>
+</navigation>

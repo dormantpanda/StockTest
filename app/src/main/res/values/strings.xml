@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">StockTest</string>
+
+    <!-- Login screen -->
+    <string name="label_login">Введите пользовательские данные:</string>
+    <string name="button_login">Войти</string>
+    <string name="hint_phone">Телефон</string>
+    <string name="hint_password">Пароль</string>
+    <string name="error_password">Пароль должен быть не менее 8 символов, содержать символы верхнего, нижнего регистров и цифру</string>
+    <string name="error_phone">Номер введён неверно</string>
+
+    <!-- Stock List screen -->
+    <string name="label_not_available">Не торгуется</string>
+    <string name="toolbar_title_list">Московская биржа</string>
+    <string name="button_retry">Повторить</string>
+
+    <!-- Stock Inf screen -->
+    <string name="button_buy">Купить</string>
+    <string name="snack_buy">Not implemented yet</string>
+</resources>
