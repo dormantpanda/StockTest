@@ -13,6 +13,9 @@
     <string name="label_not_available">Не торгуется</string>
     <string name="toolbar_title_list">Московская биржа</string>
     <string name="button_retry">Повторить</string>
+    <string name="title_error">Ошибка!</string>
+    <string name="text_rate_error">Превышена допустимая частота запросов, подождите минуту</string>
+    <string name="button_proceed">Продолжить</string>
 
     <!-- Stock Inf screen -->
     <string name="button_buy">Купить</string>

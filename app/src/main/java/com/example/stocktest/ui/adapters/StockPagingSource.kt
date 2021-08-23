@@ -27,10 +27,6 @@ class StockPagingSource(private val stockRepo: StockListRepository) : PagingSour
 
     override fun getRefreshKey(state: PagingState<Int, Stock>): Int? {
         return state.anchorPosition
-        /*.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }*/
     }
 
     companion object {

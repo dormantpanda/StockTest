@@ -4,8 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.stocktest.app.base.BaseViewModel
 import com.example.stocktest.data.models.Stock
+import com.example.stocktest.data.network.base.ApiError
 import com.example.stocktest.data.repositories.stock.StockListRepository
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -13,14 +15,24 @@ class StockInformationViewModel @Inject constructor(
     private val stockListRepository: StockListRepository
 ) : BaseViewModel() {
 
+    var errorResponse = MutableLiveData<ApiError>()
     var candlesResponse = MutableLiveData<List<Float>>()
 
     fun getStockCandles(symbol: String) {
         viewModelScope.launch {
-            val response =
-                stockListRepository.getCandle(symbol, RESOLUTION, getPrevTime(), getCurrentTime())
-            response.closePrices?.let {
-                candlesResponse.postValue(it)
+            try {
+                val response =
+                    stockListRepository.getCandle(
+                        symbol,
+                        RESOLUTION,
+                        getPrevTime(),
+                        getCurrentTime()
+                    )
+                response.closePrices?.let {
+                    candlesResponse.postValue(it)
+                }
+            } catch (e: Exception) {
+                if (e is ApiError) errorResponse.postValue(e)
             }
         }
     }

@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.stocktest.R
 import com.example.stocktest.app.base.BaseFragment
@@ -47,7 +45,6 @@ class StockListFragment : BaseFragment(R.layout.fragment_stock_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding.progress.isVisible = true
         lifecycleScope.launch {
             viewModel.stocks.collectLatest { items ->
                 stockAdapter.submitData(items)
@@ -60,7 +57,9 @@ class StockListFragment : BaseFragment(R.layout.fragment_stock_list) {
             toolbar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
-            val loadStateAdapter = StockLoadStateAdapter { stockAdapter.retry() }
+            val loadStateAdapter = StockLoadStateAdapter {
+                stockAdapter.retry()
+            }
             rvStockList.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = stockAdapter.apply {

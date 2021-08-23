@@ -2,6 +2,7 @@ package com.example.stocktest.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -28,9 +29,20 @@ class StockLoadStateAdapter(private val retry: () -> Unit) :
         fun bind(loadState: LoadState) = with(binding) {
 
             btRetry.setOnClickListener {
-                retry
+                retry()
             }
-
+            if (loadState is LoadState.Error){
+                val builder = AlertDialog.Builder(root.context)
+                builder.apply {
+                    setTitle(root.resources.getString(R.string.title_error))
+                    setMessage(root.resources.getString(R.string.text_rate_error))
+                    setPositiveButton(R.string.button_proceed) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    create()
+                    show()
+                }
+            }
             btRetry.isVisible = loadState is LoadState.Error
             progress.isVisible = loadState is LoadState.Loading
         }

@@ -19,12 +19,4 @@ class StockListViewModel @Inject constructor(
     val stocks: Flow<PagingData<Stock>> = Pager(PagingConfig(pageSize = StockPagingSource.PAGE_SIZE)) {
         StockPagingSource(stockListRepository)
     }.flow.cachedIn(viewModelScope)
-
-    /*fun getStockList() = viewModelScope.launch {
-        Pager(PagingConfig(pageSize = 10)) {
-            StockPagingSource(stockListRepository)
-        }.flow.cachedIn(viewModelScope).collectLatest {
-            stocks.postValue(it)
-        }
-    }*/
 }
